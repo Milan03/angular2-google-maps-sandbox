@@ -1,3 +1,9 @@
 .sebm-google-map-container {
     height: 300px;
 }
+
+.col-centered {
+    width: 300px;
+    float: none;
+    margin: 0 auto;
+}
