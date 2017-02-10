@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <sebm-google-map 
+        [latitude]="lat || centerLat" 
+        [longitude]="lng || centerLng"
+        [zoom]="8"
+        (mapClick)="mapClicked($event)">
+        <sebm-google-map-marker 
+          *ngIf="lat && lng"
+          [latitude]="lat" 
+          [longitude]="lng">
+        </sebm-google-map-marker>
+      </sebm-google-map>
+    </div>
+  </div> 
+</div>
