@@ -1,11 +1,12 @@
-export interface Location { 
+export class marker { 
     lat?: number;
     lng?: number;
-    buildingNum?: string;
+    label?: string;
+    /*buildingNum?: string;
     streetName?: string;
     city?: string;
     region?: string;
     crossSt?: string;
     landMark?: string;
-    detail?: string;
+    detail?: string;*/
 }

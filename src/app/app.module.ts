@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { GoogleplaceDirective } from 'angular2-google-map-auto-complete/directives/googleplace.directive';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
@@ -18,7 +19,8 @@ import { MapComponent } from './map/map.component';
     FormsModule,
     HttpModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBiPZ2DrJuIXjozoLSAdk6iUAI_sz6OzMU'
+      apiKey: 'AIzaSyBiPZ2DrJuIXjozoLSAdk6iUAI_sz6OzMU',
+      libraries: ['places']
     }),
     RouterModule.forRoot([
       {
@@ -33,6 +35,6 @@ import { MapComponent } from './map/map.component';
     ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

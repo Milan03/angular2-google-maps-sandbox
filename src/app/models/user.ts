@@ -1,4 +1,4 @@
-import { Location } from './location';
+/*import { Location } from './location';
 
 export class User {
     name: string;
@@ -8,4 +8,4 @@ export class User {
         this.name = "",
         this.userLoc = { }
     }
-}
+}*/

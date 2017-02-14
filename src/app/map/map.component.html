@@ -1,31 +1,34 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <sebm-google-map [latitude]="lat || centerLat" [longitude]="lng || centerLng" [zoom]="8" (mapClick)="mapClicked($event)">
-        <sebm-google-map-marker *ngIf="lat && lng" [latitude]="lat" [longitude]="lng">
-        </sebm-google-map-marker>
-      </sebm-google-map>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <sebm-google-map [latitude]="centerLat" [longitude]="centerLng" [zoom]="8" (mapClick)="mapClicked($event)">
+                <sebm-google-map-marker *ngIf="marker.lat" [latitude]="marker.lat" [longitude]="marker.lng">
+                </sebm-google-map-marker>
+            </sebm-google-map>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 col-centered">
-      <div class="form">
-        <div class="form-group">
-          <button class="btn-primary">Get my Location</button>
+    <div class="row">
+        <div class="col-md-6 col-centered">
+            <div class="form">
+                <div class="form-group">
+                    <button class="btn-primary">Get my Location</button>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Address" id="autocompleteInput">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Latitude">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Longitude">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Building #">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Street Name">
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-          <input type="text" placeholder="Latitude">
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Longitude">
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Building #">
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Street Name">
-        </div>
-      </div>
     </div>
-  </div>
 </div>
