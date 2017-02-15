@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <sebm-google-map [latitude]="centerLat" [longitude]="centerLng" [zoom]="8" (mapClick)="mapClicked($event)">
+            <sebm-google-map [latitude]="marker.lat || centerLat" [longitude]="marker.lng || centerLng" [zoom]="8" (mapClick)="mapClicked($event)">
                 <sebm-google-map-marker *ngIf="marker.lat" [latitude]="marker.lat" [longitude]="marker.lng">
                 </sebm-google-map-marker>
             </sebm-google-map>
