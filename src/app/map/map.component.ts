@@ -49,18 +49,8 @@ export class MapComponent implements OnInit {
     });
   }
 
-  getCurrentPosition() {
-    navigator.geolocation.getCurrentPosition( (position) => {
-      this.marker = new marker();
-      this.marker.lat = position.coords.latitude;
-      this.marker.lng = position.coords.longitude;
-      this.marker.draggable = true;
-    });
-  }
-
   getGeoLocation(lat: number, lng: number) {
     if (navigator.geolocation) {
-      var options = { enableHighAccuracy: true }
         let geocoder = new google.maps.Geocoder();
         let latlng = new google.maps.LatLng(lat, lng);
         let request = { latLng: latlng };
@@ -68,14 +58,32 @@ export class MapComponent implements OnInit {
         geocoder.geocode(request, (results, status) => {
           if (status == google.maps.GeocoderStatus.OK) {
             let result = results[0];
+            let rsltAdrComponent = result.address_components;
+            let resultLength = rsltAdrComponent.length;
             if (result != null) {
-              this.marker.city = result.address_components[result.address_components.length-4].short_name;
+              this.marker.buildingNum = rsltAdrComponent[resultLength-8].short_name;
+              this.marker.streetName = rsltAdrComponent[resultLength-7].short_name;
             } else {
               alert("No address available!");
             }
           }
         });
     }
+  }
+
+  getCurrentPosition() {
+    let options = { enableHighAccuracy: true };
+    navigator.geolocation.getCurrentPosition( (position) => {
+      this.marker = new marker();
+      this.marker.lat = position.coords.latitude;
+      this.marker.lng = position.coords.longitude;
+      this.marker.draggable = true;
+      this.getGeoLocation(this.marker.lat, this.marker.lng);
+    }, error => {
+      console.log(error);
+    }, options
+    );
+    
   }
 
   mapClicked($event: MouseEvent) {
@@ -88,6 +96,7 @@ export class MapComponent implements OnInit {
   markerDragEnd(m: marker, $event: MouseEvent) {
     this.marker.lat = $event.coords.lat;
     this.marker.lng = $event.coords.lng;
+    this.getGeoLocation(this.marker.lat, this.marker.lng);
     console.log("Marker Dragged --> ");
     console.log("Lat: " +this.marker.lat +" Long: " +this.marker.lng)
   }
