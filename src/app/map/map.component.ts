@@ -27,6 +27,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.marker = new marker();
     this.autocomplete();
+    this.getCurrentPosition();
   }
 
   autocomplete() {
@@ -39,10 +40,18 @@ export class MapComponent implements OnInit {
           this.marker.lat = place.geometry.location.lat();
           this.marker.lng = place.geometry.location.lng();
           this.marker.label = place.name;
+          //console.log( place.address_component[0].short_name );
 
           console.log(place);
         });
       });
+    });
+  }
+
+  getCurrentPosition() {
+    navigator.geolocation.getCurrentPosition( (position) => {
+      this.marker.lat = position.coords.latitude;
+      this.marker.lng = position.coords.longitude;
     });
   }
 
@@ -51,5 +60,4 @@ export class MapComponent implements OnInit {
     this.marker.lng = $event.coords.lng;
     console.log("Lat: " +this.marker.lat +" Long: " +this.marker.lng)
   }
-
 }
