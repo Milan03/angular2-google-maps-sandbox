@@ -2,7 +2,7 @@ export class marker implements ILatLng {
     lat: number;
     lng: number;
     label?: string;
-    draggable?: boolean;
+    draggable: boolean;
     buildingNum?: string;
     streetName?: string;
     city?: string;
@@ -15,4 +15,5 @@ export class marker implements ILatLng {
 interface ILatLng {
     lat: number;
     lng: number;
+    draggable: boolean;
 }
