@@ -40,9 +40,6 @@ export class MapComponent implements OnInit {
           this.marker.lat = place.geometry.location.lat();
           this.marker.lng = place.geometry.location.lng();
           this.marker.label = place.name;
-          
-          //console.log( place.address_component[0].short_name );
-
           console.log(place);
         });
       });
@@ -54,7 +51,6 @@ export class MapComponent implements OnInit {
         let geocoder = new google.maps.Geocoder();
         let latlng = new google.maps.LatLng(lat, lng);
         let request = { latLng: latlng };
-
         geocoder.geocode(request, (results, status) => {
           if (status == google.maps.GeocoderStatus.OK) {
             let result = results[0];
@@ -63,6 +59,7 @@ export class MapComponent implements OnInit {
             if (result != null) {
               this.marker.buildingNum = rsltAdrComponent[resultLength-8].short_name;
               this.marker.streetName = rsltAdrComponent[resultLength-7].short_name;
+              this.marker.label = result.formatted_address;
             } else {
               alert("No address available!");
             }
