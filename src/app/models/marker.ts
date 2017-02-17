@@ -1,7 +1,7 @@
-export class marker implements ILatLng { 
+export class marker implements IMarker { 
     lat: number;
     lng: number;
-    label?: string;
+    label: string;
     draggable: boolean;
     buildingNum?: string;
     streetName?: string;
@@ -9,11 +9,12 @@ export class marker implements ILatLng {
     region?: string;
     crossSt?: string;
     landMark?: string;
-    detail?: string;
+    postalCode?: string;
 }
 
-interface ILatLng {
+interface IMarker {
     lat: number;
     lng: number;
+    label: string;
     draggable: boolean;
 }

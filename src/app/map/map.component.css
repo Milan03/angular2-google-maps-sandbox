@@ -1,9 +1,23 @@
+.main-container {
+    border: 1px solid #000000;
+}
+
 .sebm-google-map-container {
     height: 300px;
+    width: 600px;
 }
 
 .col-centered {
     width: 300px;
     float: none;
     margin: 0 auto;
+}
+
+.btn-custom {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.form-custom {
+    padding-top: 5px;
 }
