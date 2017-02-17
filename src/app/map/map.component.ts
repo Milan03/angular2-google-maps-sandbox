@@ -34,7 +34,7 @@ export class MapComponent implements OnInit {
   fillInputs(formatted_address:string) {
     let addrElements = formatted_address.split(",");
     let provPostalCode = addrElements[2].split(" ");
-    console.log(provPostalCode);
+    this.marker.draggable = true;
     this.marker.label = formatted_address;
     this.marker.buildingNum = addrElements[0].substr(0,addrElements[0].indexOf(' '));
     this.marker.streetName = addrElements[0].substr(addrElements[0].indexOf(' ')+1);
@@ -108,6 +108,7 @@ export class MapComponent implements OnInit {
   }
 
   markerDragEnd(m: marker, $event: MouseEvent) {
+    this.marker = new marker();
     this.marker.lat = $event.coords.lat;
     this.marker.lng = $event.coords.lng;
     this.getGeoLocation(this.marker.lat, this.marker.lng);
