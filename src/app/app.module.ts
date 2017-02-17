@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from 'angular2-google-maps/core';
-import { GoogleplaceDirective } from 'angular2-google-map-auto-complete/directives/googleplace.directive';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
