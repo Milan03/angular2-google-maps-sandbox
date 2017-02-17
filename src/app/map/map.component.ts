@@ -65,8 +65,6 @@ export class MapComponent implements OnInit {
     });
   }
 
-
-
   getGeoLocation(lat: number, lng: number) {
     if (navigator.geolocation) {
         let geocoder = new google.maps.Geocoder();
