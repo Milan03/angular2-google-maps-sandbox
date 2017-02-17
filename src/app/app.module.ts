@@ -8,6 +8,7 @@ import { GoogleplaceDirective } from 'angular2-google-map-auto-complete/directiv
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
+import { MapsService } from './services/maps.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { MapComponent } from './map/map.component';
       }
     ])
   ],
-  providers: [],
+  providers: [MapsService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

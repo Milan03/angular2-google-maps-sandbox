@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { MouseEvent, MapsAPILoader } from 'angular2-google-maps/core';
 
 import { marker } from '../models/marker';
-//import { User } from '../models/user';
+import { MapsService } from '../services/maps.service'
 
 declare var google: any;
 
@@ -21,7 +21,8 @@ export class MapComponent implements OnInit {
     
   constructor(
     private _loader: MapsAPILoader,
-    private _zone: NgZone
+    private _zone: NgZone,
+    private _mapsService: MapsService
   ) { }
 
   ngOnInit() {
@@ -39,7 +40,9 @@ export class MapComponent implements OnInit {
           this.marker = new marker();
           this.marker.lat = place.geometry.location.lat();
           this.marker.lng = place.geometry.location.lng();
-          this.marker.label = place.name;
+          this.marker.label = place.formatted_address;
+          this.marker.buildingNum = place.address_components[0].short_name;
+          this.marker.streetName = place.address_components[1].short_name;
           console.log(place);
         });
       });
@@ -79,8 +82,7 @@ export class MapComponent implements OnInit {
     }, error => {
       console.log(error);
     }, options
-    );
-    
+    );  
   }
 
   mapClicked($event: MouseEvent) {
