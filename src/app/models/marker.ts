@@ -10,6 +10,20 @@ export class marker implements IMarker {
     crossSt?: string;
     landMark?: string;
     postalCode?: string;
+
+    constructor() {
+        this.lat = 0;
+        this.lng = 0;
+        this.label = "";
+        this.draggable = true;
+        this.buildingNum = "";
+        this.streetName = "";
+        this.city = "";
+        this.region = "";
+        this.crossSt = "";
+        this.landMark = "";
+        this.postalCode = "";
+    }
 }
 
 interface IMarker {

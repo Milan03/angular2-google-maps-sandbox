@@ -28,7 +28,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.marker = new marker();
     this.autocomplete();
-    this.getCurrentPosition();
+    //this.getCurrentPosition();
   }
 
   fillInputs(formatted_address:string) {
