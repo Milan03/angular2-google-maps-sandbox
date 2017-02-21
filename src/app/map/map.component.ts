@@ -28,7 +28,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.marker = new marker();
     this.autocomplete();
-    //this.getCurrentPosition();
+    this.callCurrentPosition();
   }
 
   fillInputs(formatted_address:string) {
@@ -40,9 +40,9 @@ export class MapComponent implements OnInit {
     this.marker.streetName = addrElements[0].substr(addrElements[0].indexOf(' ')+1);
     this.marker.city = addrElements[1];
     this.marker.region =  provPostalCode[1];
-    if (provPostalCode.length == 4)
+    if (provPostalCode.length == 4) // if Canada postal code
       this.marker.postalCode =  provPostalCode[2]+provPostalCode[3];
-    else if (provPostalCode.length == 3)
+    else if (provPostalCode.length == 3) // if USA postal code
       this.marker.postalCode = provPostalCode[2];
     else
       this.marker.postalCode = "N/A";
@@ -85,7 +85,20 @@ export class MapComponent implements OnInit {
     }
   }
 
-  getCurrentPosition() {
+  callCurrentPosition() {
+      this._mapsService.getCurrentPosition().subscribe( 
+      position => {
+        this._zone.run(() => {
+          this.marker.lat = position.coords.latitude;
+          this.marker.lng = position.coords.longitude;
+          this.marker.draggable = true;
+          this.getGeoLocation(this.marker.lat, this.marker.lng);
+        });
+      }
+      );
+  }
+
+/*  getCurrentPosition() {
     let options = { enableHighAccuracy: true };
     navigator.geolocation.getCurrentPosition( (position) => {
       this.marker = new marker();
@@ -97,7 +110,7 @@ export class MapComponent implements OnInit {
       console.log(error);
     }, options
     );  
-  }
+  }*/
 
   mapClicked($event: MouseEvent) {
     this.marker = new marker();

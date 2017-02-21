@@ -35,6 +35,6 @@ import { MapsService } from './services/maps.service';
     ])
   ],
   providers: [MapsService],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

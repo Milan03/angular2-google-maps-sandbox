@@ -28,4 +28,19 @@ export class MapsService extends GoogleMapsAPIWrapper {
             });
         })
     }
+
+    getCurrentPosition(): Observable<Position> {
+        return new Observable((observer: Observer<Position>) => {
+            navigator.geolocation.getCurrentPosition(
+                (position: Position) => {
+                    observer.next(position);
+                    observer.complete();
+                },
+                (error: PositionError) => {
+                    console.log('Geolocation service: ' +error.message);
+                    observer.error(error);
+                }
+            );
+        });
+    }
 }
