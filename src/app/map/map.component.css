@@ -20,4 +20,19 @@
 
 .form-custom {
     padding-top: 5px;
+    float: left;
+    margin: 0 auto;
+}
+
+.form-custom input {
+    float: right;
+    margin: 0 auto;
+    width: 400px;
+}
+
+.form-custom label {
+    float: left;
+    padding-bottom: 6px;
+    margin: 0 auto;
+    width: 150px;
 }
