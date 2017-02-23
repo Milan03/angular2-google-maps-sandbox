@@ -7,16 +7,17 @@ declare var google: any;
 
 @Injectable()
 export class MapsService extends GoogleMapsAPIWrapper {
-    constructor(private __loader: MapsAPILoader, private __zone:NgZone) {
+    constructor(private __loader: MapsAPILoader, private __zone: NgZone) {
         super(__loader, __zone);
     }
 
-    // From @vintesh - https://github.com/SebastianM/angular2-google-maps/issues/689
+
+
     getLatLong(address: string): Observable<any> {
         console.log('Getting address: ', address);
         let geocoder = new google.maps.Geocode();
         return Observable.create(observer => {
-            geocoder.geocode( { 'address': address }, (results, status) => {
+            geocoder.geocode({ 'address': address }, (results, status) => {
                 if (status == google.maps.GeocoderStatus.OK) {
                     observer.next(results[0].geometry.location);
                     observer.complete();
@@ -26,10 +27,10 @@ export class MapsService extends GoogleMapsAPIWrapper {
                     observer.complete();
                 }
             });
-        })
+        });
     }
 
-    getGeoLocation(lat: number, lng: number): Observable<any> {
+    getGeoLocation(lat: number, lng: number): Observable<google.maps.GeocoderResult> {
         if (navigator.geolocation) {
             let geocoder = new google.maps.Geocoder();
             let latlng = new google.maps.LatLng(lat, lng);
@@ -50,6 +51,24 @@ export class MapsService extends GoogleMapsAPIWrapper {
         }
     }
 
+/*    getAutocompleteResponse(): Observable<any> {
+        this.__loader.load().then(() => {
+            let autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocompleteInput"), {});
+            return Observable.create(observer => {
+                autocomplete.getPlace( 
+                    (place: google.maps.Place) => {
+                        observer.next(place);
+                        observer.complete();
+                    },
+                    (error: Object) => {
+                        console.log(error);
+                        observer.error(error);
+                    }
+                );
+            });
+        });
+    }*/
+
     getCurrentPosition(): Observable<Position> {
         return new Observable((observer: Observer<Position>) => {
             navigator.geolocation.getCurrentPosition(
@@ -58,7 +77,7 @@ export class MapsService extends GoogleMapsAPIWrapper {
                     observer.complete();
                 },
                 (error: PositionError) => {
-                    console.log('Geolocation service: ' +error.message);
+                    console.log('Geolocation service: ' + error.message);
                     observer.error(error);
                 }
             );
