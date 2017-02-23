@@ -12,7 +12,7 @@ export class MapsService extends GoogleMapsAPIWrapper {
     }
 
     // From @vintesh - https://github.com/SebastianM/angular2-google-maps/issues/689
-    getLatLong(address: string) {
+    getLatLong(address: string): Observable<any> {
         console.log('Getting address: ', address);
         let geocoder = new google.maps.Geocode();
         return Observable.create(observer => {
@@ -29,7 +29,7 @@ export class MapsService extends GoogleMapsAPIWrapper {
         })
     }
 
-    getGeoLocation(lat: number, lng: number) {
+    getGeoLocation(lat: number, lng: number): Observable<any> {
         if (navigator.geolocation) {
             let geocoder = new google.maps.Geocoder();
             let latlng = new google.maps.LatLng(lat, lng);

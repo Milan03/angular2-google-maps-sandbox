@@ -38,7 +38,7 @@ export class MapComponent implements OnInit {
     this.marker.label = formatted_address;
     this.marker.buildingNum = addrElements[0].substr(0,addrElements[0].indexOf(' '));
     this.marker.streetName = addrElements[0].substr(addrElements[0].indexOf(' ')+1);
-    this.marker.city = addrElements[1];
+    this.marker.city = addrElements[1].trim();
     this.marker.region =  provPostalCode[1];
     if (provPostalCode.length == 4)
       this.marker.postalCode =  provPostalCode[2]+provPostalCode[3];
@@ -63,24 +63,6 @@ export class MapComponent implements OnInit {
         });
       });
     });
-  }
-
-  getGeoLocation(lat: number, lng: number) {
-    if (navigator.geolocation) {
-        let geocoder = new google.maps.Geocoder();
-        let latlng = new google.maps.LatLng(lat, lng);
-        let request = { latLng: latlng };
-        geocoder.geocode(request, (results, status) => {
-          if (status == google.maps.GeocoderStatus.OK) {
-            let result = results[0];
-            if (result != null) {
-              this.fillInputs(result.formatted_address);
-            } else {
-              alert("No address available!");
-            }
-          }
-        });
-    }
   }
 
   callGeoLocation(lat: number, lng: number) {
