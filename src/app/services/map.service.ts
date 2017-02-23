@@ -29,6 +29,27 @@ export class MapsService extends GoogleMapsAPIWrapper {
         })
     }
 
+    getGeoLocation(lat: number, lng: number) {
+        if (navigator.geolocation) {
+            let geocoder = new google.maps.Geocoder();
+            let latlng = new google.maps.LatLng(lat, lng);
+            let request = { latLng: latlng };
+            return Observable.create(observer => {
+                geocoder.geocode(request, (results, status) => {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        console.log(results[0]);
+                        observer.next(results[0])
+                        observer.complete();
+                    } else {
+                        console.log('Error: ', results, ' & Status: ', status);
+                        observer.next();
+                        observer.complete();
+                    }
+                });
+            });
+        }
+    }
+
     getCurrentPosition(): Observable<Position> {
         return new Observable((observer: Observer<Position>) => {
             navigator.geolocation.getCurrentPosition(

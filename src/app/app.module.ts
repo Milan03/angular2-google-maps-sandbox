@@ -7,7 +7,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
-import { MapsService } from './services/maps.service';
+import { MapsService } from './services/map.service';
 
 @NgModule({
   declarations: [
