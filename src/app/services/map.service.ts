@@ -23,8 +23,7 @@ export class MapsService extends GoogleMapsAPIWrapper {
                     observer.complete();
                 } else {
                     console.log('Error: ', results, ' & Status: ', status);
-                    observer.next();
-                    observer.complete();
+                    observer.error();
                 }
             });
         });
@@ -43,8 +42,7 @@ export class MapsService extends GoogleMapsAPIWrapper {
                         observer.complete();
                     } else {
                         console.log('Error: ', results, ' & Status: ', status);
-                        observer.next();
-                        observer.complete();
+                        observer.error();
                     }
                 });
             });
