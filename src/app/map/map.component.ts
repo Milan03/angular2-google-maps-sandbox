@@ -14,7 +14,7 @@ declare var google: any;
 })
 export class MapComponent implements OnInit {
   // Default map center
-  centerLat: number = 37.4292;
+  centerLat: number = 25.4292;
   centerLng: number = -122.1381; 
   //user: User;
   marker: marker;
