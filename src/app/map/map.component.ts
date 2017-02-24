@@ -27,6 +27,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.marker = new marker();
+    //this.marker.zoom = 15;
     this.autocomplete();
     this.callCurrentPosition();
   }
@@ -71,6 +72,7 @@ export class MapComponent implements OnInit {
     this._mapsService.getGeoLocation(lat, lng).subscribe(
       results => {
         this._zone.run(() => {
+          //this.marker.zoom = 12;
           this.fillInputs(results.formatted_address);
         })
       }
@@ -84,6 +86,7 @@ export class MapComponent implements OnInit {
           this.marker.lat = position.coords.latitude;
           this.marker.lng = position.coords.longitude;
           this.marker.draggable = true;
+          //this.marker.zoom = 12;
           this.callGeoLocation(this.marker.lat, this.marker.lng);
         });
       }

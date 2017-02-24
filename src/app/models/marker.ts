@@ -3,6 +3,7 @@ export class marker implements IMarker {
     lng: number;
     label: string;
     draggable: boolean;
+    zoom: number;
     buildingNum?: string;
     streetName?: string;
     city?: string;
@@ -16,6 +17,7 @@ export class marker implements IMarker {
         this.lng = 0;
         this.label = "";
         this.draggable = true;
+        this.zoom = 0;
         this.buildingNum = "";
         this.streetName = "";
         this.city = "";
@@ -31,4 +33,5 @@ interface IMarker {
     lng: number;
     label: string;
     draggable: boolean;
+    zoom: number;
 }
