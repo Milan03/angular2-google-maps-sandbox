@@ -11,8 +11,6 @@ export class MapsService extends GoogleMapsAPIWrapper {
         super(__loader, __zone);
     }
 
-
-
     getLatLong(address: string): Observable<any> {
         console.log('Getting address: ', address);
         let geocoder = new google.maps.Geocode();
