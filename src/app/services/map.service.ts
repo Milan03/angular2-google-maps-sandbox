@@ -27,7 +27,7 @@ export class MapsService extends GoogleMapsAPIWrapper {
         });
     }
 
-    getGeoLocation(lat: number, lng: number): Observable<google.maps.GeocoderResult> {
+    getRevGeoLocation(lat: number, lng: number): Observable<google.maps.GeocoderResult> {
         if (navigator.geolocation) {
             let geocoder = new google.maps.Geocoder();
             let latlng = new google.maps.LatLng(lat, lng);
@@ -46,24 +46,6 @@ export class MapsService extends GoogleMapsAPIWrapper {
             });
         }
     }
-
-/*    getAutocompleteResponse(): Observable<any> {
-        this.__loader.load().then(() => {
-            let autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocompleteInput"), {});
-            return Observable.create(observer => {
-                autocomplete.getPlace( 
-                    (place: google.maps.Place) => {
-                        observer.next(place);
-                        observer.complete();
-                    },
-                    (error: Object) => {
-                        console.log(error);
-                        observer.error(error);
-                    }
-                );
-            });
-        });
-    }*/
 
     getCurrentPosition(): Observable<Position> {
         return new Observable((observer: Observer<Position>) => {
