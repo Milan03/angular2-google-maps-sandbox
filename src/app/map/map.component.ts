@@ -54,7 +54,7 @@ export class MapComponent implements OnInit {
     }
 
     /**
-     * Registers an event listener that is bound to textbox. Exposes the Google API Autocomplete 
+     * Registers an event listener that is bound to a textbox. Exposes the Google API Autocomplete 
      * functionality.
      * @param None.
      * @returns Nothing. Listens for key strokes and invokes Google API functionality.
