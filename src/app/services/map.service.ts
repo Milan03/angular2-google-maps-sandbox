@@ -21,7 +21,9 @@ export class MapsService extends GoogleMapsAPIWrapper {
         console.log('Getting address: ', address);
         let geocoder = new google.maps.Geocode();
         return Observable.create(observer => {
-            geocoder.geocode({ 'address': address }, (results, status) => {
+            geocoder.geocode({
+                'address': address
+            }, (results, status) => {
                 if (status == google.maps.GeocoderStatus.OK) {
                     observer.next(results[0].geometry.location);
                     observer.complete();
@@ -45,7 +47,9 @@ export class MapsService extends GoogleMapsAPIWrapper {
         if (navigator.geolocation) {
             let geocoder = new google.maps.Geocoder();
             let latlng = new google.maps.LatLng(lat, lng);
-            let request = { latLng: latlng };
+            let request = {
+                latLng: latlng
+            };
             return Observable.create(observer => {
                 geocoder.geocode(request, (results, status) => {
                     if (status == google.maps.GeocoderStatus.OK) {
@@ -67,8 +71,10 @@ export class MapsService extends GoogleMapsAPIWrapper {
      *                                 the client.
      */
     getCurrentPosition(): Observable<Position> {
-        let options = { enableHighAccuracy: true };
-        return new Observable((observer: Observer<Position>) => {
+        let options = {
+            enableHighAccuracy: true
+        };
+        return new Observable((observer: Observer < Position > ) => {
             navigator.geolocation.getCurrentPosition(
                 (position: Position) => {
                     observer.next(position);
