@@ -32,7 +32,7 @@ export class MapComponent implements OnInit {
 
     /**
      * Takes a resulted formatted address and seperates the different parts into their 
-     * respective text-box fields.
+     * respective text-box field bindings.
      * @param {string} [formatted_address] Results formatted address to split.
      * @returns Nothing. Sets DOM objects.
      */
